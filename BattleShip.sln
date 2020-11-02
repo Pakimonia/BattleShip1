@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip", "BattleShip\BattleShip.csproj", "{9F09C6A0-4C29-483C-B36F-045B2B649A83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp34", "..\WpfApp34\WpfApp34\WpfApp34.csproj", "{373B4D8B-30F6-40B5-9C7C-E7E32F8C6EBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +17,15 @@ Global
 		{9F09C6A0-4C29-483C-B36F-045B2B649A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F09C6A0-4C29-483C-B36F-045B2B649A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F09C6A0-4C29-483C-B36F-045B2B649A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{373B4D8B-30F6-40B5-9C7C-E7E32F8C6EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{373B4D8B-30F6-40B5-9C7C-E7E32F8C6EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{373B4D8B-30F6-40B5-9C7C-E7E32F8C6EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{373B4D8B-30F6-40B5-9C7C-E7E32F8C6EBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {59FC480C-50AA-4316-887E-D617EB13D49A}
+		SolutionGuid = {43BB3A98-8B20-4CFD-8612-1B8B4DC23654}
 	EndGlobalSection
 EndGlobal

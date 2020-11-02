@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestBattleShip
+namespace BattleShip
 {
     class User
     {
@@ -16,8 +16,8 @@ namespace TestBattleShip
 
         public void FillYou()
         {
-            youField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "І", "К", "А" });
-            battleField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "І", "К", "А" });
+            youField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "I", "К", "А" });
+            battleField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "I", "К", "А" });
             for (int i = 0; i < 10; i++)
             {
                 youField.Add(new List<string>() { i.ToString(), "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" });
@@ -58,21 +58,35 @@ namespace TestBattleShip
                     for (int j = 0; j < 1;)
                     {
                         youField[x][y] = "2";
-                        if (way == 1)
+                        while(true)
                         {
-                            x--;
-                        }
-                        else if (way == 2)
-                        {
-                            x++;
-                        }
-                        else if (way == 3)
-                        {
-                            y++;
-                        }
-                        else if (way == 4)
-                        {
-                            y--;
+
+                            if (way == 1 && x > 1 && youField[x-1][y] == "#")
+                            {
+                                x--;
+                                break;
+                            }
+                            else if (way == 2 && x < 11 && youField[x + 1][y] == "#")
+                            {
+                                x++;
+                                break;
+                            }
+                            else if (way == 3 && y < 11 && youField[x][y + 1] == "#")
+                            {
+                                y++;
+                                break;
+                            }
+                            else if (way == 4 && y > 1 && youField[x][y + 1] == "#")
+                            {
+                                y--;
+                                break;
+                            }
+                            else
+                            {
+                                x = savex;
+                                y = savey;
+                                way = rand.Next(1, 4);
+                            }
                         }
                         if (youField[x][y] == "#")
                         {
@@ -104,6 +118,7 @@ namespace TestBattleShip
                     for (int j = 0; j < 1;)
                     {
                         youField[x][y] = "3";
+                        
                         if (way == 1)
                         {
                             x--;
@@ -279,11 +294,12 @@ namespace TestBattleShip
         }
         public void PrintYou()
         {
+            Console.Clear();
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    Console.Write(youField + " ");
+                    Console.Write(youField[i][j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -295,7 +311,7 @@ namespace TestBattleShip
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    Console.Write(battleField + " ");
+                    Console.Write(battleField[i][j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -304,21 +320,21 @@ namespace TestBattleShip
             Console.WriteLine();
             Console.WriteLine();
         }
-        public void RankingYourField(int random)
+        public void RankingYourField(string random)
         {
             for (int l = 0; l != 1;)
             {
                 PrintYou();
                 Console.WriteLine("1) Re randomed");
                 Console.WriteLine("0) Ok");
-                random = Console.Read();
-                if (random == 1)
+                random = Console.ReadLine();
+                if (random == "1")
                 {
                     FillYou();
                     Console.Clear();
                     Ranking();
                 }
-                else if (random == 0)
+                else if (random == "0")
                 {
                     Console.Clear();
                     PrintYou();
@@ -335,7 +351,7 @@ namespace TestBattleShip
 
         public void FillPk()
         {
-            youField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "І", "К", "А" });
+            youField.Add(new List<string>() { " ", "Р", "Е", "С", "П", "У", "Б", "Л", "I", "К", "А" });
             for (int i = 0; i < 10; i++)
             {
                 youField.Add(new List<string>() { i.ToString(), "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" });
@@ -594,14 +610,13 @@ namespace TestBattleShip
                 }
             }
         }
-
         public void PrintPk()
         {
             for (int i = 0; i < 11; i++)
             {
                 for (int j = 0; j < 11; j++)
                 {
-                    Console.Write(youField + " ");
+                    Console.Write(youField[i][j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -668,34 +683,48 @@ namespace TestBattleShip
         static void BattelYou(User you, Pk computer)
         {
 
-            char perevx;
+            int perevx;
             int perevy;
             Console.WriteLine("Enter cordinete");
-            perevx = Console.ReadLine().ToCharArray()[0];
-            perevy = Console.Read();
-            if (perevx == '@')
+            try
+            {
+                perevx = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                perevx = int.Parse(Console.ReadLine());
+            }
+            try
+            {
+                perevy = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                perevy = int.Parse(Console.ReadLine());
+            }
+            if (perevx == -1)
             {
                 computer.SumShip = 0;
                 return;
             }
-            if (perevx >= 65 && perevx <= 74)
+            else if (perevx >= 0 && perevx <= 10)
             {
-                you.x = perevx - 64;
+                you.x = perevx + 1;
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("These coordinates are not correct");
+                Console.WriteLine("These coordinates are not correct " + perevx + you.x);
                 BattelYou(you, computer);
             }
-            if (perevy >= 0 && perevy <= 11)
+            if (perevy >= 0 && perevy <= 10)
             {
                 you.y = perevy + 1;
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("These coordinates are not correct");
+                Console.WriteLine("These coordinates are not correct 2");
                 BattelYou(you, computer);
             }
             if (you.x >= 11 || you.y >= 11 || you.x == 0 || you.y == 0)
@@ -779,7 +808,7 @@ namespace TestBattleShip
         {
             User you = new User();
             Pk pk = new Pk();
-            int random = 1;
+            string random = "1";
             pk.FillPk();
             you.FillYou();
             pk.RankingPk();
